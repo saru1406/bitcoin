@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bit_coins', function (Blueprint $table) {
             $table->id();
             $table->integer('price');
-            $table->integer('price_ave');
+            $table->integer('price_ave')->nullable(true);
             $table->timestamps();
         });
     }

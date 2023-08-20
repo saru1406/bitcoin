@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BitCoin extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'price'
+    ];
 }

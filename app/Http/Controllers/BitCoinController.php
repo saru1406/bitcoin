@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBitCoinRequest;
 use App\Http\Requests\UpdateBitCoinRequest;
 use App\Models\BitCoin;
+use App\Services\BitCoinServiceInterface;
 use Inertia\Inertia;
 
 class BitCoinController extends Controller
 {
+    public function __construct(private BitCoinServiceInterface $bitCoinService)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
@@ -67,13 +71,8 @@ class BitCoinController extends Controller
 
     public function execution()
     {
-        $strUrl = "https://coincheck.com/api/accounts/balance";
-        $intNonce = time();
-        $arrQuery = array("hoge" => "foo");
-        $strAccessSecret = "API_SECRET";
-        $strMessage = $intNonce . $strUrl . http_build_query($arrQuery);
-        $strSignature = hash_hmac("sha256", $strMessage, $strAccessSecret);
-        # => "3bc1f33d802056c61ba8c8108f6ffb7527bcd184461a3ea0fed3cee0a22ae15d"
-        return Inertia::render('Execution');
+        $this->bitCoinService->storeBitCoin();
+
+        return to_route('dashboard');
     }
 }
