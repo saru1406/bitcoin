@@ -12,7 +12,12 @@ class BitCoinService implements BitCoinServiceInterface
 
     public function storeBitCoin()
     {
-       $bitCoinRate = $this->bitCoinRepository->getBitCoinRate();
+       $bitCoinRate = $this->bitCoinRepository->fetchBitCoinRate();
        return $this->bitCoinRepository->storeBitCoin($bitCoinRate);
+    }
+
+    public function getBitCoin()
+    {
+        return $this->bitCoinRepository->getBitCoin();
     }
 }

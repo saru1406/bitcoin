@@ -3,6 +3,11 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Chart from '@/Components/Chart.vue'
 
+const props = defineProps({
+    'data':Object
+})
+
+console.log(props)
 </script>
 
 <template>
@@ -13,7 +18,7 @@ import Chart from '@/Components/Chart.vue'
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">商品一覧</h2>
         </template>
         <section class="text-gray-600 body-font">
-            <Chart /> 
+            <Chart :data="data" />
             <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
                 <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
                     src="https://dummyimage.com/720x600">
@@ -29,7 +34,7 @@ import Chart from '@/Components/Chart.vue'
                             <input type="text" id="hero-field" name="hero-field"
                                 class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
-                        <Link as="botton" :href="route('bitcoin.execution')" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">自動売買実行</Link>
+                        <!-- <Link as="botton" :href="route('bitcoin.execution')" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">自動売買実行</Link> -->
                     </div>
                     <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Neutra shabby chic ramps, viral fixie.</p>
                     <div class="flex">

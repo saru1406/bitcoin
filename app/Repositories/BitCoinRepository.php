@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 
 class BitCoinRepository implements BitCoinRepositoryInterface
 {
-    public function getBitCoinRate()
+    public function fetchBitCoinRate()
     {
         $client = new Client();
         $url = "https://coincheck.com/api/rate/btc_jpy";
@@ -23,5 +23,10 @@ class BitCoinRepository implements BitCoinRepositoryInterface
         BitCoin::create([
             'price' => $bitCoinRate
         ]);
+    }
+
+    public function getBitCoin()
+    {
+        return BitCoin::select('price')->paginate(1000);
     }
 }

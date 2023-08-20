@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 interface BitCoinRepositoryInterface
 {
-    public function getBitCoinRate();
+    public function fetchBitCoinRate();
 
     public function storeBitCoin($bitCoinRate);
+
+    public function getBitCoin();
 }
