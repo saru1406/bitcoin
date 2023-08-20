@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import Chart from '@/Components/Chart.vue'
+
 </script>
 
 <template>
@@ -11,6 +13,7 @@ import { Head, Link } from '@inertiajs/vue3';
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">商品一覧</h2>
         </template>
         <section class="text-gray-600 body-font">
+            <Chart /> 
             <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
                 <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
                     src="https://dummyimage.com/720x600">
