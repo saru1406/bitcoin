@@ -27,6 +27,7 @@ class BitCoinRepository implements BitCoinRepositoryInterface
 
     public function getBitCoin()
     {
-        return BitCoin::select('price')->paginate(1000);
+        $bitcoins = BitCoin::select('price')->orderBy('id', 'desc')->paginate(100);
+        return $bitcoins->reverse();
     }
 }

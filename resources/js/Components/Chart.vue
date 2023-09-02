@@ -1,32 +1,39 @@
 <script setup>
 import { Chart, registerables } from "chart.js";
-import { BarChart } from "vue-chart-3";
-import { reactive } from "vue"
+import { LineChart } from "vue-chart-3";
+import { reactive, watchEffect } from "vue";
 Chart.register(...registerables);
 
 const props = defineProps({
-    'data': Object
-})
-
-const key = props.data.data.map(key => key);
-const prices = props.data.data.map(item => item.price);
-console.log(prices)
+  data: Object
+});
 
 const barData = reactive({
-    labels: key,
-    datasets: [
-        {
-            label: 'ビットコイン',
-            data: prices,
-            backgroundColor: "rgb(75, 192, 192)",
-            tension: 0.1,
-        }
-    ]
-})
+  labels: [],
+  datasets: [
+    {
+      label: "ビットコイン",
+      data: [],
+      backgroundColor: "rgb(75, 192, 192)",
+      tension: 0.1
+    }
+  ]
+});
+
+watchEffect(() => {
+  if (props.data) {
+    const dataArray = Object.values(props.data);
+    const prices = dataArray.map((item) => item.price);
+    const labels = Array.from({ length: prices.length }, (_, i) => i + 1);
+
+    barData.labels = labels;
+    barData.datasets[0].data = prices;
+  }
+});
 </script>
 
 <template>
-    <div>
-        <BarChart :chartData="barData" />
-    </div>
+  <div>
+    <LineChart :chartData="barData" />
+  </div>
 </template>

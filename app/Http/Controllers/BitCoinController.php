@@ -71,9 +71,11 @@ class BitCoinController extends Controller
 
     public function execution()
     {
-        $data = $this->bitCoinService->getBitCoin();
-        // dd($data);
+        return Inertia::render('Dashboard');
+    }
 
-        return Inertia::render('Dashboard',compact('data'));
+    public function getBitCoin()
+    {
+        return $this->bitCoinService->getBitCoin();
     }
 }
